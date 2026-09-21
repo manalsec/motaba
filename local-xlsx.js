@@ -1,8 +1,16 @@
 /* Local spreadsheet reader for Motabe — no uploads, no network */
 async function readSpreadsheetLocally(file){
   const name=(file.name||'').toLowerCase();
-  if(name.endsWith('.csv')) return parseLocalCSV(await file.text());
-  if(!name.endsWith('.xlsx')) throw new Error('Only XLSX/CSV supported offline');
+  if(name.endsWith('.csv')) return parseLocalDelimited(await file.text(), ',');
+  // Blackboard Ultra exports a tab-delimited UTF-16 text file with an .xls extension.
+  if(name.endsWith('.xls')){
+    const buf=await file.arrayBuffer();
+    const bytes=new Uint8Array(buf);
+    let enc=(bytes[0]===0xFF&&bytes[1]===0xFE)?'utf-16le':(bytes[0]===0xFE&&bytes[1]===0xFF)?'utf-16be':'utf-8';
+    let text=new TextDecoder(enc).decode(buf).replace(/^\uFEFF/,'');
+    return parseLocalDelimited(text, '\t');
+  }
+  if(!name.endsWith('.xlsx')) throw new Error('Only XLSX/XLS/CSV supported offline');
   if(typeof JSZip==='undefined') throw new Error('Local ZIP reader unavailable');
   const zip=await JSZip.loadAsync(await file.arrayBuffer());
   const xml=async p=>{const f=zip.file(p);return f?new DOMParser().parseFromString(await f.async('text'),'application/xml'):null};
@@ -47,8 +55,11 @@ async function readSpreadsheetLocally(file){
   const headers=rows[hi].map((h,i)=>String(h||`عمود ${i+1}`).replace(/\u00a0/g,' ').replace(/[\u200e\u200f]/g,'').replace(/\s+/g,' ').trim());
   return rows.slice(hi+1).filter(r=>r.some(x=>String(x).trim()!=='')).map(r=>Object.fromEntries(headers.map((h,i)=>[h,r[i]??''])));
 }
-function parseLocalCSV(text){
+function parseLocalDelimited(text,delimiter=','){
   const lines=text.replace(/^\uFEFF/,'').split(/\r?\n/).filter(x=>x.trim()); if(!lines.length)return [];
-  const parse=line=>{let out=[],cur='',q=false;for(let i=0;i<line.length;i++){let ch=line[i];if(ch==='"'){if(q&&line[i+1]==='"'){cur+='"';i++}else q=!q}else if(ch===','&&!q){out.push(cur);cur=''}else cur+=ch}out.push(cur);return out};
-  const h=parse(lines[0]).map(x=>x.trim());return lines.slice(1).map(line=>{let a=parse(line),o={};h.forEach((k,i)=>o[k]=a[i]??'');return o});
+  const parse=line=>{let out=[],cur='',q=false;for(let i=0;i<line.length;i++){let ch=line[i];if(ch==='"'){if(q&&line[i+1]==='"'){cur+='"';i++}else q=!q}else if(ch===delimiter&&!q){out.push(cur);cur=''}else cur+=ch}out.push(cur);return out};
+  const h=parse(lines[0]).map((x,i)=>String(x||`عمود ${i+1}`).trim());
+  return lines.slice(1).map(line=>{let a=parse(line),o={};h.forEach((k,i)=>o[k]=a[i]??'');return o});
 }
+function parseLocalCSV(text){return parseLocalDelimited(text, ',')}
+
