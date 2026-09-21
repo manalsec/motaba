@@ -23,3 +23,5 @@
 .trainer-nav{position:sticky;top:10px;z-index:20;background:rgba(255,255,255,.96);padding:6px;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,.06)}
 
 .field-note{display:block;margin-top:6px;font-size:12px;color:#6b7777;line-height:1.7}.pdf-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}.pdf-options label{display:flex;gap:8px;align-items:center;padding:10px;border:1px solid #d6e6e4;border-radius:10px;background:#f7fbfa}.pdf-options input{width:auto}
+
+.bb-skill-list{max-height:320px;overflow:auto}.bb-skill-choice{display:flex;gap:8px;align-items:center;padding:8px 4px;border-bottom:1px solid #e5e7eb}.bb-skill-choice input{width:auto}
