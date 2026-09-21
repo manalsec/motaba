@@ -8,20 +8,18 @@
 
 .exportSelectWrap{display:flex;align-items:center;gap:8px;background:var(--p);color:#fff;border-radius:12px;padding:7px 10px;font-size:13px;font-weight:700}.exportSelect{width:auto;min-width:135px;margin:0;padding:7px 10px;border:0;background:#fff;color:var(--p2);font-family:'Cairo',Tahoma,Arial,sans-serif;font-weight:700}.exportSelect:focus{outline:2px solid #b9dfda}.exportSelectWrap select{margin-top:0}
 
-/* v1.5: توحيد أزرار شريط رئيس القسم */
-.toolbarAction{width:165px;height:42px;min-height:42px;display:inline-flex;align-items:center;justify-content:center;margin:0;padding:0 12px;border-radius:12px;font-family:'Cairo',Tahoma,Arial,sans-serif;font-size:13px;font-weight:700;line-height:1.2}.importAction{cursor:pointer}.toolbar .exportSelect{min-width:165px;width:165px;height:42px;background:var(--p);color:#fff;border:0;appearance:auto}.toolbar .exportSelect option{background:#fff;color:#17202a}.toolbar .ghost.toolbarAction{background:#eef8f7;color:var(--p2)}
-/* v1.6: سجل متابعة المهارات */
+.toolbarAction{width:165px;height:42px;min-height:42px;display:inline-flex;align-items:center;justify-content:center;margin:0;padding:0 12px;border-radius:12px;font-family:'Cairo',Tahoma,Arial,sans-serif;font-size:13px;font-weight:700;line-height:1.2}.importAction{cursor:pointer}.toolbar .exportSelect{min-width:165px;width:165px;height:42px;background:var(--p);color:#fff;border:0;appearance:auto}.toolbar .exportSelect option{background:#fff;color:#17202a}.toolbar .ghost.toolbarAction{background:var(--p);color:#fff}
 .role .icon{display:none}.skill-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.skill-tabs button.active{background:var(--p);color:#fff}.skill-table{min-width:760px}.skill-table th:first-child,.skill-table td:first-child{position:sticky;right:0;z-index:2;background:#fff;min-width:210px}.skill-table th:first-child{background:#eaf7f5}.status-select{min-width:115px;margin:0;padding:7px;font-size:12px}.status-done{background:#e7f7ef!important;color:#166534}.status-notdone{background:#fff1f2!important;color:#9f1239}.status-absent{background:#fff7ed!important;color:#9a3412}.status-deprived{background:#f3f4f6!important;color:#374151}.status-pending{background:#fff!important;color:#64748b}.skills-scroll{overflow:auto;max-height:65vh;border:1px solid var(--line);border-radius:14px}.skill-chip{display:inline-flex;gap:6px;align-items:center;background:#eef8f7;padding:7px 10px;border-radius:999px;margin:4px;font-size:12px}.progressbar{height:9px;background:#e5eeee;border-radius:99px;overflow:hidden}.progressbar span{display:block;height:100%;background:var(--p)}.compact{padding:8px 11px}.student-actions{display:flex;gap:6px;flex-wrap:wrap}.danger-text{color:#991b1b;background:#fff1f2}.importbox{border:2px dashed #b9d8d5;border-radius:16px;padding:20px;text-align:center;background:#fbfefe}.course-actions{display:flex;gap:8px;flex-wrap:wrap}.skill-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0}.mini-card{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff}.mini-card b{display:block;font-size:21px;color:var(--p2)}
 
-/* v1.7: centered role selection */
 .hero{text-align:center}
 .role{text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:190px}
 .role h2,.role p{text-align:center}
 
 .mini-card small{display:block;font-size:10px;font-weight:500;color:var(--muted);margin-top:4px}footer div+div{margin-top:4px}
-/* v2.9: navigation remains visible while working inside trainer course pages */
 .trainer-nav{position:sticky;top:10px;z-index:20;background:rgba(255,255,255,.96);padding:6px;border-radius:12px;box-shadow:0 2px 12px rgba(0,0,0,.06)}
 
 .field-note{display:block;margin-top:6px;font-size:12px;color:#6b7777;line-height:1.7}.pdf-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}.pdf-options label{display:flex;gap:8px;align-items:center;padding:10px;border:1px solid #d6e6e4;border-radius:10px;background:#f7fbfa}.pdf-options input{width:auto}
 
 .bb-skill-list{max-height:320px;overflow:auto}.bb-skill-choice{display:flex;gap:8px;align-items:center;padding:8px 4px;border-bottom:1px solid #e5e7eb}.bb-skill-choice input{width:auto}
+
+.import-platform{background:var(--p);color:#fff}
